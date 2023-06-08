@@ -6,7 +6,7 @@
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 17:06:49 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/06/06 18:12:35 by vacsargs         ###   ########.fr       */
+/*   Updated: 2023/06/08 17:46:00 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	*bubble_sort(int *tab, t_var *a)
 	return (tab);
 }
 
-void	sort_by_index(int *tab, char **number, t_stack *stack)
+void	sort_by_index(int *tab, char **number, t_stack **stack)
 {
 	int	i;
 	int	j;
@@ -67,12 +67,12 @@ void	sort_by_index(int *tab, char **number, t_stack *stack)
 	{
 		if (ft_atoi(number[j]) == tab[i])
 		{
-			lst_push_back(&stack, list_new(i, tab[i]));
+			lst_push_back(stack, list_new(tab[i], i));
 			j++;
 			i = 0;
 		}
 		else
-		i++;
+			i++;
 	}
 }
 
@@ -80,18 +80,22 @@ void	lst_push_back(t_stack **stack, t_stack *a)
 {
 	t_stack	*temp;
 
-	temp = *stack;
 	if (!a)
-		*stack = a;
-	else
+		return ;
+	temp = *stack;
+	if (!*stack)
 	{
-		while (!temp->next)
-		{
-			temp = temp->next;
-		}
-		temp->next = a;
-		a->prev = temp;
+		*stack = a;
+		a->next = NULL;
+		return ;
 	}
+	while (temp->next != NULL)
+	{
+		temp = temp->next;
+	}
+	temp->next = a;
+	a->prev = temp;
+	a->next = NULL;
 }
 
 t_stack	*list_new(int data, int index)

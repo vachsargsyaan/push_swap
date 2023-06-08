@@ -6,7 +6,7 @@
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:03:56 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/06/06 18:10:50 by vacsargs         ###   ########.fr       */
+/*   Updated: 2023/06/08 20:10:23 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,12 @@ void	ft_error(void);
 void	is_digit_sorting(char	**number);
 int		*sort_values(char **number);
 int		*bubble_sort(int *tab, t_var *a);
-void	sort_by_index(int *tab, char **number, t_stack *stack);
+void	sort_by_index(int *tab, char **number, t_stack **stack);
 void	lst_push_back(t_stack **stack, t_stack *a);
 t_stack	*list_new(int data, int index);
+void	swap_a(t_stack **stack);
+void	rotate_a(t_stack **stack);
+void	reverse_rotate_a(t_stack **stack);
+void	stack_sort(t_stack **stack, int i);
 
 #endif
