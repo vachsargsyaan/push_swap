@@ -31,3 +31,9 @@ re:				fclean all
 
 .PHONY:			all clean fclean re bonus
 
+
+test:	$(NAME)
+		$(eval ARG = $(shell jot -r 3 0 200000000))
+		./push_swap $(ARG) | ./checker_Mac $(ARG)
+		@echo -n "Instructions: "
+		@./push_swap $(ARG) | wc -l

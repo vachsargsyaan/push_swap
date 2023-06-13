@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_ops.c                                        :+:      :+:    :+:   */
+/*   matFunction.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/08 17:47:24 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/06/13 16:19:38 by vacsargs         ###   ########.fr       */
+/*   Created: 2023/06/11 19:05:52 by vacsargs          #+#    #+#             */
+/*   Updated: 2023/06/11 19:18:15 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	stack_sort(t_stack **stack, t_stack **b, int i)
+int	log_2(int size)
 {
-	if (i <= 3)
-		tree_values_sort(stack, i);
-	else if (i >= 4 && i <= 12)
-		competitionln_range(stack, b);
-	else
-		butter_fly(stack,b,i);
+	int	i;
+	int	j;
+
+	i = 2;
+	j = 0;
+	while (i <= size)
+	{
+		i *= 2;
+		j++;
+	}
+	return (j);
+}
+
+int	root(int size)
+{
+	int	i;
+	int	j;
+	
+	i = 2;
+	j = log_2(size);
+	while (i * i <= size)
+		i++;
+	i--;
+	return (i + j);
 }

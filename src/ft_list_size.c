@@ -1,23 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_ops.c                                        :+:      :+:    :+:   */
+/*   ft_list_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/08 17:47:24 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/06/13 16:19:38 by vacsargs         ###   ########.fr       */
+/*   Created: 2023/03/26 18:25:08 by vacsargs          #+#    #+#             */
+/*   Updated: 2023/06/13 17:15:27 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	stack_sort(t_stack **stack, t_stack **b, int i)
+int	ft_list_size(t_stack *begin_list)
 {
-	if (i <= 3)
-		tree_values_sort(stack, i);
-	else if (i >= 4 && i <= 12)
-		competitionln_range(stack, b);
-	else
-		butter_fly(stack,b,i);
+	int		i;
+	t_stack	*t;
+
+	i = 0;
+	t = begin_list;
+	while (t != NULL)
+	{
+		t = t->next;
+		i++;
+	}
+	return (i);
+}
+
+void norm(int argc, char **argv)
+{
+	int i;
+	int	j;
+	
+	i = 0;
+	j = 0;
+	while (j < argc)
+	{
+		i = 0;
+		while(argv[j][i] == ' ' || argv[j][i] == '\t')
+			i++;
+		if (argv[j][i] == '\0')
+			ft_error();
+		j++;	
+	}
+	
 }
