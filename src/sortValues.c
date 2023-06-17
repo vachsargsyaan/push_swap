@@ -6,7 +6,7 @@
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 17:06:49 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/06/08 17:46:00 by vacsargs         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:06:08 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	*sort_values(char **number)
 	t_var	a;
 
 	a.i = 0;
-	while (number[a.i] != '\0')
+	while (number[a.i] != NULL)
 		a.i++;
 	tab = malloc(sizeof(int) * a.i);
 	a.len = a.i;
 	a.i = 0;
-	while (number[a.i] != '\0')
+	while (number[a.i] != NULL)
 	{
 		tab[a.i] = ft_atoi(number[a.i]);
 		a.i++;

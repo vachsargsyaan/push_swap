@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/31 18:03:51 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/06/17 15:41:32 by vacsargs         ###   ########.fr       */
+/*   Created: 2023/06/16 15:15:11 by vacsargs          #+#    #+#             */
+/*   Updated: 2023/06/17 15:28:36 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../include/checker.h"
 
 void	ft_error(void)
 {
@@ -40,9 +40,9 @@ int	main(int argc, char **argv)
 		z.j++;
 	}
 	z.b = ft_split(z.res, ' ');
-	check_digits(z.b);
+	check_digits1(z.b);
 	z.tab = sort_values(z.b);
 	sort_by_index(z.tab, z.b, &a);
-	stack_sort(&a, &stack_b, ft_list_size(a));
+	main_part_2(&a, &stack_b);
 	return (0);
 }

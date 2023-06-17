@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matFunction.c                                      :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/11 19:05:52 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/06/13 18:15:25 by vacsargs         ###   ########.fr       */
+/*   Created: 2023/02/25 16:46:06 by vacsargs          #+#    #+#             */
+/*   Updated: 2023/06/16 19:07:09 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../include/get_next_line_bonus.h"
+#include "../include/checker.h"
 
-int	log_2(int size)
+char	*ft_strchr(const char *s, int c)
 {
 	int	i;
-	int	j;
 
-	i = 2;
-	j = 0;
-	while (i <= size)
+	i = 0;
+	while (s[i] != '\0')
 	{
-		i *= 2;
-		j++;
-	}
-	return (j);
-}
-
-int	root(int size)
-{
-	int	i;
-	int	j;
-
-	i = 2;
-	j = log_2(size);
-	while (i * i <= size)
+		if (s[i] == (char)c)
+			return ((char *)s + i);
 		i++;
-	i--;
-	return (i + j);
+	}
+	if (s[i] == (char)c)
+		return ((char *)s + i);
+	return (NULL);
 }

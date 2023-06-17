@@ -6,7 +6,7 @@
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:16:51 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/06/13 16:24:11 by vacsargs         ###   ########.fr       */
+/*   Updated: 2023/06/17 15:26:48 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,30 @@
 void	competitionln_range(t_stack **stack, t_stack **b)
 {
 	int		i;
-	int		flag;
 	t_stack	*temp;
-	int		j;
 
-	j = 0;
 	i = 0;
-	flag = 0;
-	temp = *stack;
 	while (ft_list_size(*stack) > 3)
 	{
 		temp = *stack;
-		if (search_min_value(stack,i))
+		if (search_min_value(stack, i))
 		{
 			while ((*stack)->index != i)
-				rotate_a(stack);
-			push_b(stack, b);
+				rotate_a(stack, 1);
+			push_b(stack, b, 1);
 			i++;
 		}
 		else
 		{
 			while ((*stack)->index != i)
-				reverse_rotate_a(stack);
-			push_b(stack, b);
+				reverse_rotate_a(stack, 1);
+			push_b(stack, b, 1);
 			i++;
 		}
 	}
 	tree_values_sort(stack, 3);
 	while (*b != NULL)
-		push_a(b, stack);
+		push_a(b, stack, 1);
 }
 
 void	tree_values_sort(t_stack **stack, int i)
@@ -52,59 +47,40 @@ void	tree_values_sort(t_stack **stack, int i)
 	{
 		if ((*stack)->data > (*stack)->next->data
 			&& (*stack)->data > (*stack)->next->next->data)
-			rotate_a(stack);
+			rotate_a(stack, 1);
 		else if ((*stack)->data < (*stack)->next->data
 			&& (*stack)->next->data > (*stack)->next->next->data)
-			reverse_rotate_a(stack);
+			reverse_rotate_a(stack, 1);
 	}
 	if ((*stack)->data > (*stack)->next->data)
-		swap_a(stack);
+		swap_a(stack, 1);
 }
 
-void	butter_fly(t_stack **stack,t_stack **b, int size)
+void	butter_fly(t_stack **stack, t_stack **b, int size)
 {
 	int	n;
-	int count;
+	int	count;
 
 	count = 0;
 	n = root(size);
-	
 	while ((*stack))
 	{
 		if ((*stack)->index <= count)
 		{
-			push_b(stack,b);
-			rotate_b(b);
+			push_b(stack, b, 1);
+			rotate_b(b, 1);
 			count++;
 		}
-		else if((*stack)->index <= count + n)
+		else if ((*stack)->index <= count + n)
 		{
-			push_b(stack,b);
+			push_b(stack, b, 1);
 			count++;
 		}
 		else
-			rotate_a(stack);
+			rotate_a(stack, 1);
 	}
 	size--;
-	while (*b)
-	{
-		if (search_min_value(b,size) == 1)
-		{
-			while ((*b)->index != (size))
-			{
-				rotate_b(b);
-			}
-			push_a(b, stack);
-			size--;
-		}
-		else
-		{
-			while ((*b)->index != size)
-				reverse_rotate_b(b);
-			push_a(b, stack);
-			size--;
-		}
-	}
+	butter_fly_2(stack, b, size);
 }
 
 int	search_min_value(t_stack **stack, int i)
@@ -128,4 +104,27 @@ int	search_min_value(t_stack **stack, int i)
 		}
 	}
 	return (0);
+}
+
+void	butter_fly_2(t_stack **stack, t_stack **b, int size)
+{
+	while (*b)
+	{
+		if (search_min_value(b, size) == 1)
+		{
+			while ((*b)->index != (size))
+			{
+				rotate_b(b, 1);
+			}
+			push_a(b, stack, 1);
+			size--;
+		}
+		else
+		{
+			while ((*b)->index != size)
+				reverse_rotate_b(b, 1);
+			push_a(b, stack, 1);
+			size--;
+		}
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:03:56 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/06/13 17:15:37 by vacsargs         ###   ########.fr       */
+/*   Updated: 2023/06/17 15:20:04 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,15 @@ typedef struct s_stack
 
 typedef struct s_var
 {
-	int	len;
-	int	swap;
-	int	i;
-	int	j;
-	int	flag;
+	int		len;
+	int		swap;
+	int		i;
+	int		j;
+	int		z;
+	char	**b;
+	int		flag;
+	int		*tab;
+	char	*res;
 }t_var;
 
 int		main(int argc, char **argv);
@@ -52,23 +56,24 @@ int		*bubble_sort(int *tab, t_var *a);
 void	sort_by_index(int *tab, char **number, t_stack **stack);
 void	lst_push_back(t_stack **stack, t_stack *a);
 t_stack	*list_new(int data, int index);
-void	swap_a(t_stack **stack);
-void	swap_b(t_stack **stack);
-void	ss(t_stack **stack, t_stack **b);
-void	rotate_a(t_stack **stack);
-void	rotate_b(t_stack **stack);
-void	rr(t_stack **stack, t_stack **b);
-void	reverse_rotate_a(t_stack **stack);
-void	reverse_rotate_b(t_stack **stack);
-void	rrr(t_stack **stack, t_stack **b);
+void	swap_a(t_stack **stack, int flag);
+void	swap_b(t_stack **stack, int flag);
+void	ss(t_stack **stack, t_stack **b, int flag);
+void	rotate_a(t_stack **stack, int flag);
+void	rotate_b(t_stack **stack, int flag);
+void	rr(t_stack **stack, t_stack **b, int flag);
+void	reverse_rotate_a(t_stack **stack, int flag);
+void	reverse_rotate_b(t_stack **stack, int flag);
+void	rrr(t_stack **stack, t_stack **b, int flag);
 void	stack_sort(t_stack **stack, t_stack **stack_b, int i);
 int		ft_list_size(t_stack *begin_list);
-void	push_b(t_stack **stack, t_stack **b);
-void	push_a(t_stack **stack, t_stack **b);
+void	push_b(t_stack **stack, t_stack **b, int flag);
+void	push_a(t_stack **stack, t_stack **b, int flag);
 void	competitionln_range(t_stack **stack, t_stack **b);
 void	tree_values_sort(t_stack **stack, int i);
 int		root(int size);
-void	butter_fly(t_stack **stack,t_stack **b, int size);
+void	butter_fly(t_stack **stack, t_stack **b, int size);
+void	butter_fly_2(t_stack **stack, t_stack **b, int size);
 int		search_min_value(t_stack **stack, int i);
 void	norm(int argc, char **argv);
 

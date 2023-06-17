@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   searchError.c                                      :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/04 13:06:47 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/06/17 15:39:48 by vacsargs         ###   ########.fr       */
+/*   Created: 2023/01/21 15:39:46 by vacsargs          #+#    #+#             */
+/*   Updated: 2023/06/17 15:28:47 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../include/checker.h"
 
-void	check_digits(char **number)
+int	ft_strnstr(char *hay, char *need)
+{
+	int	i;
+
+	i = 0;
+	while (hay[i] && need[i])
+	{
+		if (hay[i] != need[i])
+			return (0);
+		i++;
+	}
+	if (hay[i] == '\0' && need[i] == '\0')
+		return (1);
+	return (0);
+}
+
+void	check_digits1(char **number)
 {
 	int	i;
 	int	j;
@@ -31,10 +47,10 @@ void	check_digits(char **number)
 		}
 		i++;
 	}
-	clean_zeros(number);
+	clean_zeros1(number);
 }
 
-void	clean_zeros(char	**number)
+void	clean_zeros1(char	**number)
 {
 	int	i;
 	int	j;
@@ -48,7 +64,7 @@ void	clean_zeros(char	**number)
 		c = 0;
 		if (number[i][j] == '+' || number[i][j] == '-')
 			j++;
-		if (number[i][j] == '0')
+		if (number[i][j] == '0' || number[i][j + 1] == '0')
 		{
 			while (number[i][j] == '0')
 				j++;
@@ -58,10 +74,10 @@ void	clean_zeros(char	**number)
 			ft_error();
 		i++;
 	}
-	is_digit_values(number);
+	is_digit_values1(number);
 }
 
-void	is_digit_values(char	**number)
+void	is_digit_values1(char	**number)
 {
 	int	i;
 	int	j;
@@ -85,48 +101,4 @@ void	is_digit_values(char	**number)
 		}
 		i++;
 	}
-	is_digit_sorting(number);
-}
-
-void	is_digit_sorting(char	**number)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 1;
-	while (number[j])
-	{
-		if (ft_atoi(number[i]) < ft_atoi(number[j]))
-		{
-			i++;
-			j++;
-		}
-		else
-		{
-			return ;
-		}
-	}
-	exit(0);
-}
-
-long	ft_atoi(const char *str)
-{
-	long	a;
-	long	b;
-
-	a = 0;
-	b = 1;
-	while (*str == 32 || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-')
-		b *= -1;
-	if (*str == '+' || *str == '-')
-		str++;
-	while (*str >= '0' && *str <= '9')
-	{
-		a = a * 10 + *str - '0';
-		str++;
-	}
-	return (a * b);
 }

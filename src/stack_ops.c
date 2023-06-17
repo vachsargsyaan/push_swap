@@ -6,7 +6,7 @@
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 17:47:24 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/06/13 16:19:38 by vacsargs         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:52:39 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	stack_sort(t_stack **stack, t_stack **b, int i)
 	else if (i >= 4 && i <= 12)
 		competitionln_range(stack, b);
 	else
-		butter_fly(stack,b,i);
+		butter_fly(stack, b, i);
 }
